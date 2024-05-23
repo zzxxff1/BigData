@@ -1,0 +1,56 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <meta charset="utf-8">  
+    <title>词云图</title>  
+ <!-- 引入ECharts文件 --> 
+    <script type="text/javascript" src = "http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts.js"></script>  
+</head>  
+<body>  
+    <div id="main" style="width:15em;height:15em;border: 1px solid #e8dbd7"></div>  
+</body>    
+    <script type="text/javascript">  
+ // 使用模块化加载方式
+    require.config({
+        paths:{echarts:'http://echarts.baidu.com/build/dist'}
+    })
+    require(
+        [
+            'echarts',
+            'echarts/chart/wordCloud',
+        ],
+        function (ec) {
+            var myChart = ec.init(document.getElementById('main'));
+            option = {
+                title: {
+                    text: '现代人群对婚姻的态度',
+                    link: '',
+                },
+                backgroundColor: '#e8dbd7',
+                tooltip: { show: true },
+                series: [{
+                    shape: 'circle',
+                    name: '态度：',
+                    type: 'wordCloud',
+                    sizeRange: [100, 50000], // 最大最小值
+                    size: ['100%', '90%'], // 词云图大小
+                    textRotation: [0, 25, 40], // 词的倾斜角度
+                    textPadding: 0,
+                    autoSize: { enable: true, minSize: 2 },
+                    data: [// 词云名称，词云大小，颜色
+                        { name: '恐惧婚姻', value: 360, itemStyle: { normal: { color: '#ff7f0e' } } },
+                        { name: '拒绝婚姻', value: 290, itemStyle: { normal: { color: '#2ca02c' } } },
+                        { name: '迟疑犹豫', value: 240, itemStyle: { normal: { color: '#1f77b4' } } },
+                        { name: '厌恶婚姻', value: 1400, itemStyle: { normal: { color: '#d62728' } } },
+                        { name: '反对婚姻(制度)', value: 120, itemStyle: { normal: { color: '#9467bd' } } },
+                        { name: '顺应婚姻', value: 100, itemStyle: { normal: { color: '#69c178' } } },
+                        { name: '向往婚姻', value: 80, itemStyle: { normal: { color: '#51b6de' } } },
+                        { name: '期待婚姻', value: 60, itemStyle: { normal: { color: '#a458ab' } } },
+                    ]
+                }]
+            };
+            myChart.setOption(option);
+        }
+    );
+</script>
