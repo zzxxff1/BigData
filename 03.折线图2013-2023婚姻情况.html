@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECharts 折线图示例</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    
+</head>
+<body>
+    <!-- 用于显示 ECharts 图表的 div -->
+    <div id="echarts" style="width: 25em; height:25em;"></div>
+
+    <script>
+        $(document).ready(function() {
+            // 动态加载 JSON 文件
+            $.getJSON('data/2013-2023.json', function(data) {
+                // 初始化 ECharts 实例
+                var myChart = echarts.init(document.getElementById('echarts'));
+
+                // 提取年份和数据
+                var years = data.map(function(item) {
+                    return item['年份'];
+                });
+                var marryNums = data.map(function(item) {
+                    return item['登记结婚人数（万对）'];
+                });
+                var divorceNums = data.map(function(item) {
+                    return item['登记离婚人数（万对）'];
+                });
+                var marryRates = data.map(function(item) {
+                    return item['粗结婚率(‰)'];
+                });
+                var divorceRates = data.map(function(item) {
+                    return item['粗离婚率(‰)'];
+                });
+
+                // 配置图表的选项
+                var option = {
+                    title: {
+                        text: '2013-2023年全国婚姻登记数据',
+                        left: 'center',
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross'
+                        }
+                    },
+                    legend: {
+                        data: ['登记结婚人数（万对）', '登记离婚人数（万对）', '结婚率(‰)', '离婚率(‰)'],
+                        top:'bottom', // 调整图例水平位置为左侧
+                        itemGap: 20, // 设置图例项之间的间隔
+                        itemWidth: 5, // 设置图例项的宽度
+                        itemHeight: 5, // 设置图例项的高度
+                        textStyle: {
+                            fontSize: 15, // 设置图例文字的大小
+                        },
+                    },
+                    grid: {
+                        bottom: '20%', // 调整图表的左边距
+                       
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: years
+                    },
+                    yAxis: [
+                        {
+                            type: 'value',
+                            name: '人数（万对）',
+                            min: 0,
+                            max: 1500,
+                            interval: 250,
+                            axisLabel: {
+                                formatter: '{value}'
+                            }
+                        },
+                        {
+                            type: 'value',
+                            name: '百分比(‰)',
+                            min: 0,
+                            max: 10,
+                            interval: 1,
+                            axisLabel: {
+                                formatter: '{value}'
+                            }
+                        }
+                    ],
+                    series: [
+                        {name: '登记结婚人数（万对）', type: 'line', data: marryNums},
+                        {name: '登记离婚人数（万对）', type: 'line', data: divorceNums},
+                        {name: '结婚率(‰)', type: 'line', yAxisIndex: 1, data: marryRates},
+                        {name: '离婚率(‰)', type: 'line', yAxisIndex: 1, data: divorceRates}
+                    ]
+
+                    
+                };
+
+                // 使用配置项显示图表
+                myChart.setOption(option);
+            });
+        });
+    </script>
+</body>
+</html>
