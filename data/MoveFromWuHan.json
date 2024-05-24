@@ -1,0 +1,126 @@
+[
+  {
+    "name": "上海",
+    "value": 78
+  },
+  {
+    "name": "南京",
+    "value": 76
+  },
+  {
+    "name": "北京",
+    "value": 73
+  },
+  {
+    "name": "合肥",
+    "value": 71
+  },
+  {
+    "name": "重庆",
+    "value": 70
+  },
+  {
+    "name": "深圳",
+    "value": 67
+  },
+  {
+    "name": "成都",
+    "value": 62
+  },
+  {
+    "name": "广州",
+    "value": 58
+  },
+  {
+    "name": "杭州",
+    "value": 58
+  },
+  {
+    "name": "长沙",
+    "value": 49
+  },
+  {
+    "name": "南昌",
+    "value": 48
+  },
+  {
+    "name": "郑州",
+    "value": 47
+  },
+  {
+    "name": "西安",
+    "value": 39
+  },
+  {
+    "name": "济南",
+    "value": 33
+  },
+  {
+    "name": "福州",
+    "value": 31
+  },
+  {
+    "name": "天津",
+    "value": 28
+  },
+  {
+    "name": "青岛",
+    "value": 28
+  },
+  {
+    "name": "厦门",
+    "value": 23
+  },
+  {
+    "name": "贵阳",
+    "value": 21
+  },
+  {
+    "name": "昆明",
+    "value": 20
+  },
+  {
+    "name": "哈尔滨",
+    "value": 16
+  },
+  {
+    "name": "太原",
+    "value": 15
+  },
+  {
+    "name": "石家庄",
+    "value": 14
+  },
+  {
+    "name": "长春",
+    "value": 12
+  },
+  {
+    "name": "大连",
+    "value": 12
+  },
+  {
+    "name": "乌鲁木齐",
+    "value": 12
+  },
+  {
+    "name": "西宁",
+    "value": 11
+  },
+  {
+    "name": "三亚",
+    "value": 10
+  },
+  {
+    "name": "兰州",
+    "value": 10
+  },
+  {
+    "name": "南宁",
+    "value": 7
+  },
+  {
+    "name": "呼和浩特",
+    "value": 7
+  }
+]
