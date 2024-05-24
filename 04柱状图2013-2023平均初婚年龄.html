@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>年龄柱状图</title>
+    <!-- 引入 ECharts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="ageChart" style="width: 25em;height:25em;"></div>
+    <script>
+        // 初始化 ECharts 实例
+        var ageChart = echarts.init(document.getElementById('ageChart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '2013-2023年平均初婚年龄',
+                left: 'center',
+            },
+            tooltip: {
+                tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross'
+                        }
+                    },
+            },
+            legend: {
+                data: ['男女平均年龄(岁)', '男性平均年龄 (岁)', '女性平均年龄(岁)'],
+                top:'bottom', // 调整图例水平位置为左侧
+                        itemGap: 20, // 设置图例项之间的间隔
+                        itemWidth: 10, // 设置图例项的宽度
+                        itemHeight: 10, // 设置图例项的高度
+                        textStyle: {
+                            fontSize: 15, // 设置图例文字的大小
+                        },
+            },
+            grid: {
+                        bottom: '20%', // 调整图表的下边距
+                       
+                    },
+            xAxis: {
+                data: [] // 这里先不填充数据，后面通过 JSON 加载
+            },
+            yAxis: {},
+            series: [
+                {
+                    name: '男女平均年龄(岁)',
+                    type: 'bar',
+                    data: [] // 这里先不填充数据，后面通过 JSON 加载
+                },
+                {
+                    name: '男性平均年龄 (岁)',
+                    type: 'bar',
+                    data: [] // 这里先不填充数据，后面通过 JSON 加载
+                },
+                {
+                    name: '女性平均年龄(岁)',
+                    type: 'bar',
+                    data: [] // 这里先不填充数据，后面通过 JSON 加载
+                }
+            ]
+        };
+
+        // 使用 jQuery 的 getJSON 方法加载 JSON 数据
+        $.getJSON('data/2013-2023平均初婚年龄.json', function (data) {
+            // 填充 x 轴数据
+            option.xAxis.data = data.map(function (item) {
+                return item['年份'];
+            });
+
+            // 填充三种柱形图的数据
+            option.series[0].data = data.map(function (item) {
+                return item['男女平均年龄(岁)'];
+            });
+            option.series[1].data = data.map(function (item) {
+                return item['男性平均年龄 (岁)'];
+            });
+            option.series[2].data = data.map(function (item) {
+                return item['女性平均年龄(岁)'];
+            });
+
+            // 使用刚指定的配置项和数据显示图表。
+            ageChart.setOption(option);
+        });
+    </script>
+</body>
+</html>
