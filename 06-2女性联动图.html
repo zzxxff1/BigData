@@ -20,21 +20,21 @@
         var pieChart = echarts.init(document.getElementById('pieChart'));
 
         // 加载数据
-        $.getJSON('data/2022年男性20-49岁婚姻状况.json', function (data) {
+        $.getJSON('data/2022年女性20-49岁婚姻状况.json', function (data) {
             // 获取年龄段和男性婚姻状况数据
             var ageGroups = Object.keys(data);
             var maleMaritalData = {};
 
-            // 遍历数据，提取男性婚姻状况数据
+            // 遍历数据，提取女性婚姻状况数据
             ageGroups.forEach(function (ageGroup) {
-                var maleData = data[ageGroup]['男'];
+                var maleData = data[ageGroup]['女'];
                 maleMaritalData[ageGroup] = maleData;
             });
 
             // 渲染柱状图
             barChart.setOption({
                 title: {
-                    text: '2022年20-49岁男性婚姻状况',
+                    text: '2022年20-49岁女性婚姻状况',
                     left: 'center',
                 },
                 tooltip: {
@@ -62,21 +62,21 @@
                     type: 'value'
                 },
                 series: [{
-                    name: '未婚',
+                    name: '未婚占比(%)',
                     type: 'bar',
                     stack: 'male',
                     data: ageGroups.map(function (ageGroup) {
                         return maleMaritalData[ageGroup]['未婚占比(%)'];
                     })
                 }, {
-                    name: '已婚',
+                    name: '已婚占比(%)',
                     type: 'bar',
                     stack: 'male',
                     data: ageGroups.map(function (ageGroup) {
                         return maleMaritalData[ageGroup]['已婚占比(%)'];
                     })
                 }, {
-                    name: '离婚',
+                    name: '离婚占比(%)',
                     type: 'bar',
                     stack: 'male',
                     data: ageGroups.map(function (ageGroup) {
