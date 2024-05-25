@@ -9,14 +9,14 @@
 </head>
 <body>
     <!-- 用于显示 ECharts 图表的 div -->
-    <div id="echarts" style="width: 25em; height:25em;"></div>
+    <div id="myChart2" style="width: 25vw; height:25vw;">
 
     <script>
         $(document).ready(function() {
             // 动态加载 JSON 文件
             $.getJSON('data/2013-2023.json', function(data) {
                 // 初始化 ECharts 实例
-                var myChart = echarts.init(document.getElementById('echarts'));
+                var myChart2 = echarts.init(document.getElementById('myChart2'));
 
                 // 提取年份和数据
                 var years = data.map(function(item) {
@@ -93,14 +93,12 @@
                         {name: '结婚率(‰)', type: 'line', yAxisIndex: 1, data: marryRates},
                         {name: '离婚率(‰)', type: 'line', yAxisIndex: 1, data: divorceRates}
                     ]
-
-                    
                 };
-
                 // 使用配置项显示图表
-                myChart.setOption(option);
+                myChart2.setOption(option);
             });
         });
     </script>
+    </div>
 </body>
 </html>

@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- 在这里创建一个容器用于渲染图表 -->
-    <div id="main" style="width:30em;height:30em;"></div>
+    <div id="myChart7" style="width:30em;height:30em;"></div>
 
     <script>
         // 使用 jQuery 的 $.getJSON() 方法加载 JSON 数据
@@ -43,7 +43,7 @@
                     seriesData[i].data.push(item[ageGroup]);
                 });
             });
-
+            var myChart7 = echarts.init(document.getElementById('myChart7'));
             // ECharts 配置项
             var option = {
                 title: {
@@ -89,8 +89,8 @@
             };
 
             // 使用加载的数据和配置项初始化 ECharts 实例
-            var myChart = echarts.init(document.getElementById('main'));
-            myChart.setOption(option);
+            
+            myChart7.setOption(option);
         });
     </script>
 </body>

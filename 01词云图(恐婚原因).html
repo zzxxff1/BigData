@@ -8,8 +8,8 @@
     <script type="text/javascript" src="js/echarts.js"></script>  
 </head>  
 <body>  
-    <div id="main" style="width:15em;height:15em;border: 1px solid #e8dbd7"></div>  
-</body>    
+    <div id="myChart8" style="width:15em;height:15em;border: 1px solid #e8dbd7"></div>  
+   
     <script type="text/javascript">  
  // 使用模块化加载方式
     require.config({
@@ -21,7 +21,7 @@
             'echarts/chart/wordCloud',
         ],
         function (ec) {
-            var myChart = ec.init(document.getElementById('main'));
+            var myChart8 = ec.init(document.getElementById('myChart8'));
             option = {
                 title: {
                     text: '现代人群恐婚原因',
@@ -47,7 +47,8 @@
                     ]
                 }]
             };
-            myChart.setOption(option);
+            myChart8.setOption(option);
         }
     );
 </script>
+</body> 
