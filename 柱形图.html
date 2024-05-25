@@ -8,7 +8,7 @@
 
 	</head>
 	<body>
-		<div id="main" style="width: 600px; height: 800px"></div>
+		<div id="main" style="width: 1600px; height: 800px"></div>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$.getJSON("data/marry_population.json", function(data) {
@@ -27,16 +27,35 @@
 
 					var option = {
                         xAxis: {
-                            type: 'value',                            
+							type:'category',
+                             data: xAxisData                     
                         },
                         yAxis: {
-                            type:'category',
-                            data: xAxisData
+							type: 'value', 
+                           
                         },
+						roam:true,
+						visualMap: {
+					left: 'left',
+					top:'top',
+					min: 0,
+					max: 35,
+					inRange: {
+						// prettier-ignore
+						color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+     				 },
+					text: ['High', 'Low'],
+					calculable: true
+					},
                         series: [{
                             data: seriesData,
                             type: 'bar'
-                        }]
+                        },
+						{
+                            data: seriesData,
+                            type: 'line'
+                        }
+					]
                     };
 					
 					myChart.setOption(option);
