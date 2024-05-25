@@ -10,14 +10,207 @@
         <!-- <link rel="stylesheet" href="css/style.css"> -->
         <link href="css/style.css">
         <title></title>
+        <style>
+            div {
+            position: relative;
+        }
+
+        div.total_title {
+            width: 300px;
+            height: 50px;
+            -webkit-transform: perspective(.7em) rotateX(-2.5deg);
+            background-color: #EEEEEE;
+            position: relative;
+            top: -290px;
+            left: 780px;
+        }
+
+        .title1 {
+            position: relative;
+            text-decoration: none;
+            color: black;
+            left: 515px;
+            top: -108px;
+        }
+
+        .title2 {
+            position: relative;
+            text-decoration: none;
+            color: black;
+            left: 655px;
+            top: -151px;
+        }
+
+        .title3 {
+            position: relative;
+            text-decoration: none;
+            color: black;
+            left: 1130px;
+            top: -196px;
+        }
+
+        .title4 {
+            position: relative;
+            text-decoration: none;
+            color: black;
+            left: 1280px;
+            top: -240px;
+        }
+
+        .title5 {
+            position: relative;
+            text-decoration: none;
+            color: black;
+            left: 810px;
+            top: -355px;
+        }
+
+        .button1 {
+            background-color: white;
+            border: 2px solid #EEEEEE;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 9px 2px;
+            cursor: pointer;
+            width: 140px;
+            transform: skew(30deg);
+            position: relative;
+            left: 470px;
+        }
+
+        .button2 {
+            background-color: white;
+            border: 2px solid #EEEEEE;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 9px 2px;
+            cursor: pointer;
+            width: 140px;
+            transform: skew(-30deg);
+            position: relative;
+            left: 952px;
+        }
+
+        .button3 {
+            background-color: white;
+            border: 2px solid #EEEEEE;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 9px 2px;
+            cursor: pointer;
+            width: 140px;
+            transform: skew(-30deg);
+            position: relative;
+            left: 1097px;
+            top: -50px;
+            /*margin-bottom: -50px;*/
+        }
+
+        div.myChart {
+            background-color: white;
+            border: 2px solid #F0F0F0;
+            padding: 10px;
+            margin: 5px;
+            position: relative;
+            left: 0px;
+            top: -330px;
+        }
+
+        div.myChart2 {
+            background-color: white;
+            border: 2px solid #F0F0F0;
+            padding: 10px;
+            margin: 5px;
+            position: relative;
+            left: 0px;
+            top: -329px;
+        }
+
+        div.myChart3 {
+            background-color: white;
+            border: 2px solid #F0F0F0;
+            padding: 10px;
+            margin: 5px;
+            position: relative;
+            left: 487px;
+            top: -898px;
+        }
+
+        div.myChart4 {
+            background-color: white;
+            border: 2px solid #F0F0F0;
+            padding: 10px;
+            margin: 5px;
+            position: relative;
+            left: 1409px;
+            top: -1467px;
+        }
+
+        div.myChart5 {
+            background-color: white;
+            border: 2px solid #F0F0F0;
+            padding: 10px;
+            margin: 5px;
+            position: relative;
+            left: 1409px;
+            top: -1466px;
+        }
+
+        div.myChart6 {
+            background-color: white;
+            border: 2px solid #F0F0F0;
+            padding: 10px;
+            margin: 5px;
+            position: relative;
+            left: 0px;
+            top: -1466px;
+        }
+
+        div.myChart7 {
+            background-color: white;
+            border: 2px solid #F0F0F0;
+            padding: 10px;
+            margin: 5px;
+            position: relative;
+            left: 950px;
+            top: -1780px;
+        }
+        </style>
     
     </head>
 
-    <body style="visibility: hidden;">
-        <div class="box-center">
-            <div class="center-top">
-                <h1>智慧社区内网比对平台</h1>
-            </div>
+    <body>
+        <div style="width: 450px;height:230px;">
+            <button class="button1"></button>
+            <button class="button1"></button>
+            <button class="button2"></button>
+            <button class="button3"></button>
+            <h3><a class="title1" onclick="myFunction()">总数据</a></h3>
+            <h3><a class="title2" onclick="myFunction()">销售分析</a></h3>
+            <h3 class="title3" style="z-index:999"><a onclick="myFunction()">库存分析</a></h3>
+            <h3 class="title4" style="z-index:999"><a onclick="myFunction()">用户分析</a></h3>
+            <div class="total_title"></div>
+            <h2 class="title5">售货机大数据分析平台</h2>
+            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+            <div class="myChart" id="myChart" style="width: 450px;height:255px;opacity:0.8"></div>
+            <div class="myChart2" id="myChart2" style="width: 450px;height:255px;opacity:0.8"></div>
+            <div class="myChart3" id="myChart3" style="width: 885px;height:540px;opacity:0.8"></div>
+            <div class="myChart4" id="myChart4" style="width: 450px;height:255px;opacity:0.8"></div>
+            <div class="myChart5" id="myChart5" style="width: 450px;height:255px;opacity:0.8"></div>
+            <div class="myChart6" id="myChart6" style="width: 908px;height:285px;opacity:0.8"></div>
+            <div class="myChart7" id="myChart7" style="width: 908px;height:285px;opacity:0.8"></div>
         </div>
     </body>
 </html>
