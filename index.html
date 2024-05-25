@@ -1,216 +1,248 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="renderer" content="webkit">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
 		<script src="js/echarts.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <!-- <link rel="stylesheet" href="css/style.css"> -->
-        <link href="css/style.css">
-        <title></title>
-        <style>
-            div {
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style>        
+        body{ 
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;   
+        }
+        .title{
+            width: 50vw;
+            height: 5vw;
             position: relative;
         }
-
         div.total_title {
-            width: 300px;
-            height: 50px;
-            -webkit-transform: perspective(.7em) rotateX(-2.5deg);
+            width: 20vw;
+            height: 4vw;
+            -webkit-transform: perspective(.7em) rotateX(-3.5deg);
+            font-style: normal;
             background-color: #EEEEEE;
             position: relative;
-            top: -290px;
-            left: 780px;
+            text-align: center;
+            top: 0.5vw;
+            left: 40vw;
         }
-
         .title1 {
             position: relative;
             text-decoration: none;
             color: black;
-            left: 515px;
-            top: -108px;
+            font-weight: bold;
+            font-size: 2vw;
+            top: -3.4vw;
+            left: 41vw;
         }
-
-        .title2 {
-            position: relative;
-            text-decoration: none;
-            color: black;
-            left: 655px;
-            top: -151px;
-        }
-
-        .title3 {
-            position: relative;
-            text-decoration: none;
-            color: black;
-            left: 1130px;
-            top: -196px;
-        }
-
-        .title4 {
-            position: relative;
-            text-decoration: none;
-            color: black;
-            left: 1280px;
-            top: -240px;
-        }
-
-        .title5 {
-            position: relative;
-            text-decoration: none;
-            color: black;
-            left: 810px;
-            top: -355px;
-        }
-
         .button1 {
-            background-color: white;
-            border: 2px solid #EEEEEE;
-            color: black;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
+            background-color: rgb(255, 162, 0);
+            border: 1vw solid rgb(255, 162, 0);
             display: inline-block;
-            font-size: 16px;
-            margin: 9px 2px;
+            font-size: 1vw;
             cursor: pointer;
-            width: 140px;
-            transform: skew(30deg);
+            width: 6vw;
+            height: 3vw;
+            transform: skew(34deg);
             position: relative;
-            left: 470px;
+            z-index: 1;
+            left: 25vw;
+            top:-5.5vw;
         }
-
-        .button2 {
-            background-color: white;
-            border: 2px solid #EEEEEE;
-            color: black;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
+        .button2{
+            background-color: rgb(3, 201, 59);
+            border: 1vw solid  rgb(3, 201, 59);
             display: inline-block;
-            font-size: 16px;
-            margin: 9px 2px;
+            font-size: 1vw;
             cursor: pointer;
-            width: 140px;
-            transform: skew(-30deg);
+            width: 6vw;
+            height: 3vw;
+            transform: skew(34deg);
             position: relative;
-            left: 952px;
+            z-index: 1;
+            left: 26vw;
+            top:-5.5vw;
         }
-
-        .button3 {
-            background-color: white;
-            border: 2px solid #EEEEEE;
-            color: black;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
+        .button3{
+            background-color: rgb(3, 201, 59);
+            border: 1vw solid rgb(3, 201, 59);
             display: inline-block;
-            font-size: 16px;
-            margin: 9px 2px;
+            font-size: 1vw;
             cursor: pointer;
-            width: 140px;
-            transform: skew(-30deg);
+            width: 6vw;
+            height: 3vw;
+            transform: skew(-34deg);
             position: relative;
-            left: 1097px;
-            top: -50px;
-            /*margin-bottom: -50px;*/
+            z-index: 1;
+            left: 49vw;
+            top:-5.5vw;
         }
-
-        div.myChart {
+        .button4{
+            background-color: rgb(255, 162, 0);
+            border: 1vw solid rgb(255, 162, 0);
+            display: inline-block;
+            font-size: 1vw;
+            cursor: pointer;
+            width: 6vw;
+            height: 3vw;
+            transform: skew(-34deg);
+            position: relative;
+            z-index: 1;
+            left: 50vw;
+            top:-5.5vw;
+        }
+        /* 左上 */
+        div.myChart1 {
+            width: 25vw;
+            height: 16vw;
             background-color: white;
-            border: 2px solid #F0F0F0;
-            padding: 10px;
-            margin: 5px;
+            opacity:0.8;
+            border: 0.2vw solid #F0F0F0;
+            margin: 0.5vw;
             position: relative;
             left: 0px;
-            top: -330px;
+            top: -4vw;
         }
-
+        /* 左中 */
         div.myChart2 {
+            width: 25vw;
+            height: 16vw;
             background-color: white;
-            border: 2px solid #F0F0F0;
-            padding: 10px;
-            margin: 5px;
+            opacity:0.8;
+            border: 0.2vw solid #F0F0F0;
+            margin: 0.5vw;
             position: relative;
             left: 0px;
-            top: -329px;
+            top: -4vw;
         }
-
+        .chart-bottom{
+            height: 1vw;
+        }
+        .chart-right{
+            height: 0.1vw;
+        }
+        .chart-middle{
+            height: 0.1vw;
+        }
+        /* 左下 */
         div.myChart3 {
+            width: 35vw;
+            height: 16vw;
             background-color: white;
-            border: 2px solid #F0F0F0;
-            padding: 10px;
-            margin: 5px;
-            position: relative;
-            left: 487px;
-            top: -898px;
-        }
-
-        div.myChart4 {
-            background-color: white;
-            border: 2px solid #F0F0F0;
-            padding: 10px;
-            margin: 5px;
-            position: relative;
-            left: 1409px;
-            top: -1467px;
-        }
-
-        div.myChart5 {
-            background-color: white;
-            border: 2px solid #F0F0F0;
-            padding: 10px;
-            margin: 5px;
-            position: relative;
-            left: 1409px;
-            top: -1466px;
-        }
-
-        div.myChart6 {
-            background-color: white;
-            border: 2px solid #F0F0F0;
-            padding: 10px;
-            margin: 5px;
+            opacity:0.8;
+            border: 0.2vw solid #F0F0F0;
+            margin: 0.5vw;
             position: relative;
             left: 0px;
-            top: -1466px;
+            top: -4vw;
         }
-
-        div.myChart7 {
+        /* 中下 */
+        div.myChart4 {
+            width: 35vw;
+            height: 16vw;
             background-color: white;
-            border: 2px solid #F0F0F0;
-            padding: 10px;
-            margin: 5px;
+            opacity:0.8;
+            border: 0.2vw solid #F0F0F0;
+            margin: 0.5vw;
             position: relative;
-            left: 950px;
-            top: -1780px;
+            left: 36vw;
+            top: -20.8vw;
+        }
+        /* 中间 */
+        div.myChart5 {
+            width: 45vw;
+            height: 30vw;
+            background-color: white;
+            opacity:0.8;
+            border: 0.2vw solid #F0F0F0;
+            margin: 0.5vw;
+            position: relative;
+            left: 26vw;
+            top: -36.2vw;
+        }
+        /* 右上 */
+        div.myChart6 {
+            width: 25vw;
+            height: 16vw;
+            background-color: white;
+            opacity:0.8;
+            border: 0.2vw solid #F0F0F0;
+            margin: 0.5vw;
+            position: relative;
+            left: 72vw;
+            top: -39.5vw;
+        }
+        /* 右中 */
+        div.myChart7 {
+            width: 25vw;
+            height: 16vw;
+            background-color: white;
+            opacity:0.8;
+            border: 0.2vw solid #F0F0F0;
+            margin: 0.5vw;
+            position: relative;
+            left: 72vw;
+            top: -39.5vw;
+        }
+        /* 右下 */
+        div.myChart8 {
+            width: 25vw;
+            height: 16vw;
+            background-color: white;
+            opacity:0.8;
+            border: 0.2vw solid #F0F0F0;
+            margin: 0.5vw;
+            position: relative;
+            left: 72vw;
+            top: -39.5vw;
         }
         </style>
     
     </head>
 
     <body>
-        <div style="width: 450px;height:230px;">
-            <button class="button1"></button>
+        <div class="title">
+            <div class="total_title"></div>
+                <div class="title1">婚姻大数据分析平台</div>
             <button class="button1"></button>
             <button class="button2"></button>
             <button class="button3"></button>
-            <h3><a class="title1" onclick="myFunction()">总数据</a></h3>
-            <h3><a class="title2" onclick="myFunction()">销售分析</a></h3>
-            <h3 class="title3" style="z-index:999"><a onclick="myFunction()">库存分析</a></h3>
-            <h3 class="title4" style="z-index:999"><a onclick="myFunction()">用户分析</a></h3>
-            <div class="total_title"></div>
-            <h2 class="title5">售货机大数据分析平台</h2>
-            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-            <div class="myChart" id="myChart" style="width: 450px;height:255px;opacity:0.8"></div>
-            <div class="myChart2" id="myChart2" style="width: 450px;height:255px;opacity:0.8"></div>
-            <div class="myChart3" id="myChart3" style="width: 885px;height:540px;opacity:0.8"></div>
-            <div class="myChart4" id="myChart4" style="width: 450px;height:255px;opacity:0.8"></div>
-            <div class="myChart5" id="myChart5" style="width: 450px;height:255px;opacity:0.8"></div>
-            <div class="myChart6" id="myChart6" style="width: 908px;height:285px;opacity:0.8"></div>
-            <div class="myChart7" id="myChart7" style="width: 908px;height:285px;opacity:0.8"></div>
+            <button class="button4"></button>
         </div>
+        <div class="chart-left">
+            <div class="myChart1" id="myChart1"></div>
+            <div class="myChart2" id="myChart2"></div>
+        </div>
+        <div class="chart-bottom">
+        <div class="myChart3" id="myChart3"></div>
+        <div class="myChart4" id="myChart4"></div>
+        </div>
+        <div class="chart-middle">
+            <div class="myChart5" id="myChart5"></div>
+        </div>
+        <div class="chart-right">
+            <div class="myChart6" id="myChart6"></div>
+            <div class="myChart7" id="myChart7"></div>
+            <div class="myChart8" id="myChart8"></div>
+        </div>
+           <!-- <button class="button3"></button>
+             <h3><a class="title1" >销售分析</a></h3>
+            <h3><a class="title2">销售分析</a></h3>
+            <h3 class="title3" style="z-index:999"><a >库存分析</a></h3>
+            <h3 class="title4" style="z-index:999"><a >用户分析</a></h3>
+            <div class="total_title">
+            <h2 class="title5">售货机大数据分析平台</h2></div>
+            为ECharts准备一个具备大小（宽高）的Dom -->
+            <!-- 
+            <div class="myChart2" id="myChart2" style="width: 450vw;height:255vw;opacity:0.8"></div>
+            <div class="myChart3" id="myChart3" style="width: 885vw;height:540vw;opacity:0.8"></div>
+            <div class="myChart4" id="myChart4" style="width: 450vw;height:255vw;opacity:0.8"></div>
+            <div class="myChart5" id="myChart5" style="width: 450vw;height:255vw;opacity:0.8"></div>
+            <div class="myChart6" id="myChart6" style="width: 908vw;height:285vw;opacity:0.8"></div>
+            <div class="myChart7" id="myChart7" style="width: 908vw;height:285vw;opacity:0.8"></div> -->
+        
     </body>
 </html>
