@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECharts 柱状图与饼图联动</title>
+     <!-- 引入 jQuery -->
+     <script src="js/jquery.min.js"></script>
+     <!-- 引入 ECharts -->
+     <script src="js/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 图表容器 -->
+    <div id="barChart" style="width: 30em; height:30em; float: left;"></div>
+    <div id="pieChart" style="width:20em; height: 20em; float: left;"></div>
+    <!-- JavaScript 代码 -->
+    <script>
+        // 初始化图表
+        var barChart = echarts.init(document.getElementById('barChart'));
+        var pieChart = echarts.init(document.getElementById('pieChart'));
+
+        // 加载数据
+        $.getJSON('data/2022年女性20-49岁婚姻状况.json', function (data) {
+            // 获取年龄段和男性婚姻状况数据
+            var ageGroups = Object.keys(data);
+            var maleMaritalData = {};
+
+            // 遍历数据，提取女性婚姻状况数据
+            ageGroups.forEach(function (ageGroup) {
+                var maleData = data[ageGroup]['女'];
+                maleMaritalData[ageGroup] = maleData;
+            });
+
+            // 渲染柱状图
+            barChart.setOption({
+                title: {
+                    text: '2022年20-49岁女性婚姻状况',
+                    left: 'center',
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['未婚', '已婚', '离婚'],
+                    top:'bottom', // 调整图例水平位置为左侧
+                        itemGap: 20, // 设置图例项之间的间隔
+                        itemWidth: 10, // 设置图例项的宽度
+                        itemHeight: 10, // 设置图例项的高度
+                        textStyle: {
+                            fontSize: 15, // 设置图例文字的大小
+                        },
+
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ageGroups
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    name: '未婚占比(%)',
+                    type: 'bar',
+                    stack: 'male',
+                    data: ageGroups.map(function (ageGroup) {
+                        return maleMaritalData[ageGroup]['未婚占比(%)'];
+                    })
+                }, {
+                    name: '已婚占比(%)',
+                    type: 'bar',
+                    stack: 'male',
+                    data: ageGroups.map(function (ageGroup) {
+                        return maleMaritalData[ageGroup]['已婚占比(%)'];
+                    })
+                }, {
+                    name: '离婚占比(%)',
+                    type: 'bar',
+                    stack: 'male',
+                    data: ageGroups.map(function (ageGroup) {
+                        return maleMaritalData[ageGroup]['离婚占比(%)'];
+                    })
+                }]
+            });
+
+            // 绑定柱状图的事件，当鼠标移动到某一年份时，更新饼图数据
+            barChart.on('mouseover', function (params) {
+                var selectedAgeGroup = params.name;
+                var selectedMaleMaritalData = maleMaritalData[selectedAgeGroup];
+
+                // 更新饼图数据
+                pieChart.setOption({
+                    series: [{
+                        data: [
+                            { value: selectedMaleMaritalData['未婚占比(%)'], name: '未婚' },
+                            { value: selectedMaleMaritalData['已婚占比(%)'], name: '已婚' },
+                            { value: selectedMaleMaritalData['离婚占比(%)'], name: '离婚' }
+                        ]
+                    }]
+                });
+            });
+
+            // 初始化饼图
+            pieChart.setOption({
+                title: {
+                    text: '婚姻状况占比',
+                    left: '20%'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b} : {c} ({d}%)'
+                },
+                series: [
+                    {
+                        name: '婚姻状况',
+                        type: 'pie',
+                        label: {
+                        show: true, // 显示标签
+                        position: 'inside', // 在饼图内部显示标签
+                        formatter: '{b}：{d}%'
+                    },
+
+                        radius: '60%',
+                        center: ['40%', '70%'],
+                        data: []
+                    }
+                ]
+            });
+        });
+    </script>
+</body>
+</html>
