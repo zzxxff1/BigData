@@ -18,7 +18,10 @@
 					});
 			var myChart5 = echarts.init(document.getElementById("myChart5"));
 			var mapOption = {
-				title: { },
+				title: {
+						text: '我国登记结婚人口分布情况/万对',
+						left: 'center',
+					},
 				tooltip: {
 					trigger: 'item',
         			formatter: '{b}: {c}万对'
@@ -36,7 +39,7 @@
 					calculable: true
 					},
 				series: [{
-					title:"2022年各省结婚人数(万对)",
+					
 					name:"人数",
 					type: 'map',
 					map:"china",
@@ -63,6 +66,10 @@
 				},],
 			};
 			var barOption = {
+					title: {
+						text: '我国登记结婚人口分布情况/万对',
+						left: 'center',
+					},
                     xAxis: {
                     	type: 'value',                            
                     },

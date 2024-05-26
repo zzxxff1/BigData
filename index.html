@@ -7,6 +7,8 @@
 		<script src="js/china.js"></script>
         <script src="js/jquery.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script type="text/javascript" src = "http://echarts.baidu.com/build/dist/echarts.js"></script>
+        <script type="text/javascript" src="js/echarts.js"></script>  
         <script src="js/echarts-wordcloud.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style>        
@@ -655,10 +657,10 @@
                             });
                     var myChart5 = echarts.init(document.getElementById("myChart5"));
                     var mapOption = {
-                        title:{
-                            text:"2022年各省结婚人数(万对)",
+                        title: {
+                            text: '2022年我国登记结婚人口分布情况/万对',
+                            left: 'center',
                         },
-                        title: { },
                         tooltip: {
                             trigger: 'item',
                             formatter: '{b}: {c}万对'
@@ -702,6 +704,10 @@
                         },],
                     };
                     var barOption = {
+                            title: {
+                                text: '2022年我国登记结婚人口分布情况/万对',
+                                left: 'center',
+                            },
                             xAxis: {
                                 type: 'value',                            
                             },
@@ -952,21 +958,5 @@
                    </script>
             </div>
         </div>
-           <!-- <button class="button3"></button>
-             <h3><a class="title1" >销售分析</a></h3>
-            <h3><a class="title2">销售分析</a></h3>
-            <h3 class="title3" style="z-index:999"><a >库存分析</a></h3>
-            <h3 class="title4" style="z-index:999"><a >用户分析</a></h3>
-            <div class="total_title">
-            <h2 class="title5">售货机大数据分析平台</h2></div>
-            为ECharts准备一个具备大小（宽高）的Dom -->
-            <!-- 
-            <div class="myChart2" id="myChart2" style="width: 450vw;height:255vw;opacity:0.8"></div>
-            <div class="myChart3" id="myChart3" style="width: 885vw;height:540vw;opacity:0.8"></div>
-            <div class="myChart4" id="myChart4" style="width: 450vw;height:255vw;opacity:0.8"></div>
-            <div class="myChart5" id="myChart5" style="width: 450vw;height:255vw;opacity:0.8"></div>
-            <div class="myChart6" id="myChart6" style="width: 908vw;height:285vw;opacity:0.8"></div>
-            <div class="myChart7" id="myChart7" style="width: 908vw;height:285vw;opacity:0.8"></div> -->
-        
     </body>
 </html>
