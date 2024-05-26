@@ -132,6 +132,7 @@
         .chart-middle{
             height: 0.1vw;
         }
+        
         /* 左下 */
         div.myChart3 {
             width: 35vw;
@@ -218,6 +219,7 @@
             <button class="button3"></button>
             <button class="button4"></button>
         </div>
+
         <div class="chart-left">
 <!-- 2013-2023年平均初婚年龄柱形图 -->
             <div class="myChart1" id="myChart1">
@@ -295,6 +297,7 @@
                     });
                 </script>
             </div>
+
  <!-- 2013-2023年全国婚姻登记数据-折线图 -->
             <div class="myChart2" id="myChart2">
                 <script>
@@ -387,6 +390,7 @@
                 </script>
             </div>
         </div>
+
         <div class="chart-bottom">
 <!-- 男性婚姻状况数据 -->
         <div class="myChart3" id="myChart3">
@@ -639,10 +643,8 @@
         </div>
 
 
-
-        
         <div class="chart-middle">
-            <!-- 中间的动态复杂图表 -->
+<!-- 中间的动态复杂图表 -->
             <div class="myChart5" id="myChart5">
                 <script type="text/javascript">
                     $(document).ready(function() {
@@ -744,10 +746,82 @@
                 </script>
             </div>
         </div>
-        <div class="chart-right">
+
+<div class="chart-right">
+ <!-- 右上的雷达图 -->
             <div class="myChart6" id="myChart6">
                 
-            </div>
+                <div id="radarChart" style="width: 25em; height: 25em;"></div>
+    <script>
+        var myChart6 = echarts.init(document.getElementById('myChart6'));
+
+        var radarOption = {
+            title: {
+                text: '2018-2022年结婚年龄段分布',
+                left:'center',
+                textStyle: {
+                            fontSize: 15, // 设置图例文字的大小
+                        },
+            },
+            tooltip: {},
+            legend: {
+                data: ['2018', '2019', '2020', '2021', '2022'],
+                top:'bottom',
+                itemGap: 5, // 设置图例项之间的间隔
+                itemWidth: 10, // 设置图例项的宽度
+                itemHeight: 10, // 设置图例项的高度
+                textStyle: {
+                    fontSize: '1vw', // 设置图例文字的大小
+                    
+                 },
+                
+            },
+
+            radar: {
+                indicator: [
+                    { name: '20-24岁占比(%)' },
+                    { name: '25-29岁占比(%)' },
+                    { name: '30-34岁占比(%)' },
+                    { name: '35-39岁占比(%)' },
+                    { name: '40岁以上占比(%)' }
+                ],
+                radius: 85,//缩放
+                        center: ['50%', '55%'],//位置
+
+            },
+            series: [{
+                type: 'radar',
+                data: [
+                    {
+                        value: [21, 36, 16, 8, 19],
+                        name: '2018'
+                    },
+                    {
+                        value: [19.7, 34.6, 17.7, 8.1, 19.9],
+                        name: '2019'
+                    },
+                    {
+                        value: [18.6, 34.9, 19.3, 8.3, 18.9],
+                        name: '2020'
+                    },
+                    {
+                        value: [16.5, 35.3, 20, 8.7, 19.5],
+                        name: '2021'
+                    },
+                    {
+                        value: [15.2, 37.24, 20.72, 9.14, 17.7],
+                        name: '2022'
+                    }
+                ]
+            }]
+        };
+
+        myChart6.setOption(radarOption);
+    </script>
+</body>
+</div>
+
+
             <div class="myChart7" id="myChart7">
                 <script>
                     // 使用 jQuery 的 $.getJSON() 方法加载 JSON 数据
@@ -830,6 +904,7 @@
                     });
                 </script>
             </div>
+            
             <div class="myChart8" id="myChart8">
                 <script type="text/javascript">  
                     // 使用模块化加载方式
