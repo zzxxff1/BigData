@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>echarts实时图表</title>
+		<script src="js/echarts.js"></script>
+		<style>
+			*{margin: 0;padding: 0;}
+			.main{width: 500px;height: 300px;border: 1px solid #333;margin: 100px;}
+		</style>
+		
+	</head>
+	<body>
+		
+		<div class="main" id="echarts">
+			
+		</div>
+		<script>
+			window.onload = function(){
+				var arr = [
+					[820, 932, 901, 934, 1290, 1330, 1320],
+					[320, 232, 401, 834, 1290, 1030, 620],
+					[620, 432, 701, 634, 1290, 1330, 920],
+					[520, 632, 901, 834, 1290, 430, 720]
+				]
+				var mychart = echarts.init(document.getElementById("echarts"));
+				var option = {
+					title: {
+						text: '图表标题信息', //主标题
+						subtext: '副标题显示', //副标题
+						x: 'center', //标题文字居中
+						textStyle: {  //主标题样式
+							color: '#f60',
+							lineHeight: 40
+						},
+						subtextStyle: { //副标题样式
+							color: '#f90',
+							lineHeight: 20
+						},
+						top: '-2%'
+					},
+					backgroundColor: '#f9f9f9', //整个图表的背景
+					color: ['#f60'], //系列柱的颜色
+					xAxis: {
+						type: 'category',
+						data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+					},
+					yAxis: {
+						type: 'value',
+						axisLine: {
+							symbol: 'arrow',
+							lineStyle: {
+								// color: '#ff0'
+							}
+						},
+						axisLabel: {
+							formatter: '{value}万', //刻度标签的内容格式器，支持字符串模板和回调函数两种形式
+// 							formatter: function(value,index){
+// 								if(value > 0) {
+// 									return value + '万'
+// 								}
+// 								else{
+// 									return value
+// 								}
+// 							}
+						}
+					},
+					grid: { //距离左右上下的边距
+						left: '0',
+						right: '0',
+						bottom: '0',
+						containLabel: true //grid 区域是否包含坐标轴的刻度标签
+					},
+					series: [{
+						data: [820, 932, 901, 934, 1290, 1330, 1320],
+						type: 'bar'
+					}]
+				};
+				mychart.setOption(option);
+				//设置定时器,改变数据
+				setInterval(getData,2000);
+				
+				//获取数据
+				function getData(){
+					var num = Math.floor(Math.random()*arr.length);
+					var data = arr[num];
+					mychart.setOption({
+						series: [{
+							data: data
+						}]
+					})
+				}
+				getData();
+			}
+			
+		</script>
+	</body>
+</html>
