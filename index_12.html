@@ -251,6 +251,7 @@
                 var option = {
                     title: {
                         text: '未婚人数',
+                        top:'10',
                     },
                     tooltip: {},
                     legend: {
@@ -268,7 +269,7 @@
                         // color:'#cc66FF',
                         color:'#3366FF',
                         realtimeSort: true,
-                        name: '各城市人口',
+                        name: '未婚人数',
                         showBackground: true,
                         label: {
                             show: true,
@@ -293,7 +294,8 @@
                     var option1 = {
                         title: {
                             text: year[i].toString() + '年全国各省未婚人数',
-                            left:'center'
+                            left:'center',
+                            top:'10',
                         },
                         series: [{
                             data: data[i]
@@ -336,6 +338,7 @@
                         title: {
                             text: '2013-2023年全国婚姻登记数据',
                             left: 'center',
+                            top:'10',
                         },
                         tooltip: {
                             trigger: 'axis',
@@ -698,8 +701,9 @@
                         title: {
                             text: '2018-2022年结婚年龄段分布',
                             left:'center',
+                            top:'10',
                             textStyle: {
-                                        fontSize: 20,
+                                        fontSize: 15,
                                     },
                             },
                         tooltip: {},
@@ -721,7 +725,7 @@
                                 { name: '35-39岁占比(%)' }, 
                                 { name: '40岁以上占比(%)' }
                             ],
-                        radius: 75,
+                        radius: 60,
                         center: ['50%', '55%'],
                             },
                         series: [{
@@ -786,6 +790,7 @@
                             title: {
                             text: '2018-2022年结婚年龄段数据',
                             left: 'center',
+                            top:'10',
                         },
                             tooltip: {
                                 trigger: 'axis',
