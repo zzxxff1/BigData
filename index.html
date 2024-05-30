@@ -134,22 +134,33 @@
             left: 0px;
             top: -4vw;
         }
-        /* 中下图表框架 */
-        div.myChart4 {
-            width: 43vw;
-            height: 16vw;
+        /* 中左图表框架 */
+        div.myChart4-1 {
+            width: 21vw;
+            height: 20vw;
             background-color: white;
             opacity:0.8;
             border: 0.2vw solid #F0F0F0;
             margin: 0.5vw;
             position: relative;
             left: 28vw;
-            top: -20.8vw;
+            top: -24.6vw;
+        }
+        div.myChart4-2 {
+            width: 21vw;
+            height: 20vw;
+            background-color: white;
+            opacity:0.8;
+            border: 0.2vw solid #F0F0F0;
+            margin: 0.5vw;
+            position: relative;
+            left: 50vw;
+            top: -45.4vw;
         }
         /* 中间地图框架 */
         div.myChart5 {
             width: 43vw;
-            height: 30vw;
+            height: 26vw;
             background-color: white;
             opacity:0.8;
             border: 0.2vw solid #F0F0F0;
@@ -254,6 +265,8 @@
                     },
                     xAxis: {},
                     series: [{
+                        // color:'#cc66FF',
+                        color:'#3366FF',
                         realtimeSort: true,
                         name: '各城市人口',
                         showBackground: true,
@@ -381,10 +394,10 @@
             });
         </script></div>
 
-<!-- 男/女性婚姻状况联动图 -->
-        <div class="myChart4" id="myChart4">
-            <div id="barChart2" style="width: 20vw; height:16vw; float: left;"></div>
-            <div id="pieChart2" style="width:15vw; height: 15vw; float: left;"></div>
+<!-- 女性婚姻状况联动图 -->
+        <div class="myChart4-1" id="myChart4-1">
+            <div id="barChart2" style="width: 21vw; height:13vw;"></div>
+            <div id="pieChart2" style="width:21vw; height: 8vw;"></div>
             <script>
                 var barChart2 = echarts.init(document.getElementById('barChart2'));
                 var pieChart2 = echarts.init(document.getElementById('pieChart2'));
@@ -404,6 +417,7 @@
                 title: {
                     text: '2022年20-49岁女性婚姻状况',
                     left: 'center',
+                    top:'15'
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -412,14 +426,10 @@
                     }
                 },
                 legend: {
-                    data: ['未婚', '已婚', '离婚'],
-                    top:'bottom', 
-                        itemGap: 20, 
-                        itemWidth: 10,
-                        itemHeight: 10, 
-                        textStyle: {
-                            fontSize: 15,
-                        },
+                    top:'270',
+                    textStyle:{
+                        fontSize:15
+                    }
                 },
                 xAxis: {
                     type: 'category',
@@ -469,7 +479,7 @@
             pieChart2.setOption({
                 title: {
                     text: '婚姻状况占比',
-                    left: '20%'
+                    left: 'center'
                 },
                 tooltip: {
                     trigger: 'item',
@@ -485,14 +495,130 @@
                         formatter: '{b}：{d}%'
                             },
                         radius: '60%',
-                        center: ['40%', '50%'],
+                        // center: ['40%', '50%'],
                         data: []
                     }
                 ]
             });
         });
     </script>
-   </body>
+        </div>
+        <div class="myChart4-2" id="myChart4-2">
+            <div id="barChart" style="width: 21vw; height:13vw;"></div>
+            <div id="pieChart" style="width: 21vw; height:8vw; "></div>
+            <!-- JavaScript 代码 -->
+            <script>
+                // 初始化图表
+                var barChart = echarts.init(document.getElementById('barChart'));
+                var pieChart = echarts.init(document.getElementById('pieChart'));
+
+                // 加载数据
+                $.getJSON('data/2022年男性20-49岁婚姻状况.json', function (data) {
+                    // 获取年龄段和男性婚姻状况数据
+                    var ageGroups = Object.keys(data);
+                    var maleMaritalData = {};
+
+                    // 遍历数据，提取男性婚姻状况数据
+                    ageGroups.forEach(function (ageGroup) {
+                        var maleData = data[ageGroup]['男'];
+                        maleMaritalData[ageGroup] = maleData;
+                    });
+
+                    // 渲染柱状图
+                    barChart.setOption({
+                        title: {
+                            text: '2022年20-49岁男性婚姻状况',
+                            left: 'center',
+                            top:'15'
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow'
+                            }
+                        },
+                        legend: {
+                            top:'270',
+                            textStyle:{
+                                fontSize:15
+                            }
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: ageGroups
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        series: [{
+                            name: '未婚占比(%)',
+                            type: 'bar',
+                            stack: 'male',
+                            data: ageGroups.map(function (ageGroup) {
+                                return maleMaritalData[ageGroup]['未婚占比(%)'];
+                            })
+                        }, {
+                            name: '已婚占比(%)',
+                            type: 'bar',
+                            stack: 'male',
+                            data: ageGroups.map(function (ageGroup) {
+                                return maleMaritalData[ageGroup]['已婚占比(%)'];
+                            })
+                        }, {
+                            name: '离婚占比(%)',
+                            type: 'bar',
+                            stack: 'male',
+                            data: ageGroups.map(function (ageGroup) {
+                                return maleMaritalData[ageGroup]['离婚占比(%)'];
+                            })
+                        }]
+                    });
+
+                    // 绑定柱状图的事件，当鼠标移动到某一年份时，更新饼图数据
+                    barChart.on('mouseover', function (params) {
+                        var selectedAgeGroup = params.name;
+                        var selectedMaleMaritalData = maleMaritalData[selectedAgeGroup];
+
+                        // 更新饼图数据
+                        pieChart.setOption({
+                            series: [{
+                                data: [
+                                    { value: selectedMaleMaritalData['未婚占比(%)'], name: '未婚' },
+                                    { value: selectedMaleMaritalData['已婚占比(%)'], name: '已婚' },
+                                    { value: selectedMaleMaritalData['离婚占比(%)'], name: '离婚' }
+                                ]
+                            }]
+                        });
+                    });
+
+                    // 初始化饼图
+                    pieChart.setOption({
+                        title: {
+                            text: '婚姻状况占比',
+                            left: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '{a} <br/>{b} : {c} ({d}%)'
+                        },
+                        series: [
+                            {
+                                name: '婚姻状况',
+                                type: 'pie',
+                                label: {
+                                show: true, // 显示标签
+                                position: 'inside', // 在饼图内部显示标签
+                                formatter: '{b}：{d}%'
+                            },
+
+                                radius: '60%',
+                                // center: ['40%', '70%'],
+                                data: []
+                            }
+                        ]
+                    });
+                });
+            </script>
         </div>
         </div>
         <div class="chart-middle">
