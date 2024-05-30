@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Toggle</title>
+    <!-- 引入 ECharts 库 -->
+    <script src="js/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 按钮 -->
+    <button id="barChartBtn">柱状图</button>
+    <button id="lineChartBtn">折线图</button>
+    
+    <!-- 图表容器 -->
+    <div id="chartContainer" style="width: 600px; height: 400px;"></div>
+
+    <script>
+        // 初始化ECharts实例
+        var myChart = echarts.init(document.getElementById('chartContainer'));
+
+        // 初始数据
+        var barData = {
+            xAxis: {
+                type: 'category',
+                data: ['A', 'B', 'C', 'D', 'E']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [10, 20, 30, 40, 50],
+                type: 'bar'
+            }]
+        };
+
+        var lineData = {
+            xAxis: {
+                type: 'category',
+                data: ['A', 'B', 'C', 'D', 'E']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [50, 40, 30, 20, 10],
+                type: 'line'
+            }]
+        };
+
+        // 初始化时显示柱状图
+        myChart.setOption(barData);
+
+        // 按钮点击事件切换到柱状图
+        document.getElementById('barChartBtn').addEventListener('click', function() {
+            myChart.clear(); // 清空图表
+            myChart.setOption(barData); // 设置为柱状图数据
+        });
+
+        // 按钮点击事件切换到折线图
+        document.getElementById('lineChartBtn').addEventListener('click', function() {
+            myChart.clear(); // 清空图表
+            myChart.setOption(lineData); // 设置为折线图数据
+        });
+    </script>
+</body>
+</html>

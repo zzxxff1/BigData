@@ -44,8 +44,8 @@
         }
         
         .button1 {
-            background-color: rgb(255, 0, 0);
-            border: 1vw solid rgb(255, 0, 0);
+            background-color: rgb(255, 162, 0);
+            border: 1vw solid rgb(255, 162, 0);
             display: inline-block;
             font-size: 1vw;
             cursor: pointer;
@@ -100,7 +100,7 @@
             top:-5.5vw;
         }
         
-        /* 左上 */
+        /* 左上图表框架 */
         div.myChart1 {
             width: 25vw;
             height: 16vw;
@@ -112,7 +112,7 @@
             left: 0px;
             top: -4vw;
         }
-        /* 左中 */
+        /* 左中图表框架 */
         div.myChart2 {
             width: 25vw;
             height: 16vw;
@@ -134,7 +134,7 @@
         .chart-middle{
             height: 0.1vw;
         }
-        /* 左下 */
+        /* 左下图表框架 */
         div.myChart3 {
             width: 35vw;
             height: 16vw;
@@ -146,7 +146,7 @@
             left: 0px;
             top: -4vw;
         }
-        /* 中下 */
+        /* 中下图表框架 */
         div.myChart4 {
             width: 35vw;
             height: 16vw;
@@ -158,7 +158,7 @@
             left: 36vw;
             top: -20.8vw;
         }
-        /* 中间 */
+        /* 中间联动图框架 */
         div.myChart5 {
             width: 45vw;
             height: 30vw;
@@ -170,7 +170,7 @@
             left: 26vw;
             top: -36.2vw;
         }
-        /* 右上 */
+        /* 右上图表框架 */
         div.myChart6 {
             width: 25vw;
             height: 16vw;
@@ -182,7 +182,7 @@
             left: 72vw;
             top: -39.5vw;
         }
-        /* 右中 */
+        /* 右中图表框架 */
         div.myChart7 {
             width: 25vw;
             height: 16vw;
@@ -194,7 +194,7 @@
             left: 72vw;
             top: -39.5vw;
         }
-        /* 右下 */
+        /* 右下图表框架 */
         div.myChart8 {
             width: 25vw;
             height: 16vw;
@@ -206,13 +206,11 @@
             left: 72vw;
             top: -39.5vw;
         }
-        
         </style>
-    
     </head>
-
     <body>
-        <div class="title">
+        <!-- 标题栏及其装饰 -->
+        <div class="title">  
             <div class="total_title"></div>
             <div class="title1">婚姻大数据分析平台</div>
             <button class="button1"></button>
@@ -220,58 +218,56 @@
             <button class="button3"></button>
             <button class="button4"></button>
         </div>
-        <div class="chart-left">
+
+    <div class="chart-left">
 <!-- 2013-2023年平均初婚年龄柱形图 -->
-            <div class="myChart1" id="myChart1">
-                <script>
-                    // 初始化 ECharts 实例
-                    var ageChart = echarts.init(document.getElementById('myChart1'));
-                    var option = {
-                        title: {
-                            text: '2013-2023年平均初婚年龄',
+        <div class="myChart1" id="myChart1">
+            <script>
+                 // 初始化 ECharts 实例
+                var ageChart = echarts.init(document.getElementById('myChart1'));
+                var option = {
+                    title: {
+                        text: '2013-2023年平均初婚年龄',
                             left: 'center',
                         },
                         tooltip: {
-                            tooltip: {
-                                    trigger: 'axis',
-                                    axisPointer: {
-                                        type: 'cross'
-                                    }
-                                },
-                        },
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'cross' }
+                            },
                         legend: {
                             data: ['男女平均年龄(岁)', '男性平均年龄 (岁)', '女性平均年龄(岁)'],
-                            top:'bottom', // 调整图例水平位置为左侧
-                                    itemGap: 20, // 设置图例项之间的间隔
+                                top:'bottom', // 调整图例水平位置为左侧
+                                    itemGap: 10, // 设置图例项之间的间隔
                                     itemWidth: 10, // 设置图例项的宽度
                                     itemHeight: 10, // 设置图例项的高度
                                     textStyle: {
                                         fontSize:'1vw', // 设置图例文字的大小
                                     },
-                        },
+                            },
                         grid: {
-                                    bottom: '10%', // 调整图表的下边距
-                                    containLabel: true
-                                },
+                            bottom: '10%', // 调整图表的下边距
+                            containLabel: true
+                            },
                         xAxis: {
-                            data: [] // 这里先不填充数据，后面通过 JSON 加载
+                            data: [] // 数据后面通过 JSON 加载
                         },
                         yAxis: {},
                         series: [
                             {
                                 name: '男女平均年龄(岁)',
                                 type: 'bar',
-                                data: [] // 这里先不填充数据，后面通过 JSON 加载
+                                data: [] 
                             },
                             {
                                 name: '男性平均年龄 (岁)',
                                 type: 'bar',
-                                data: [] // 这里先不填充数据，后面通过 JSON 加载
+                                data: [] 
                             },
                             {
                                 name: '女性平均年龄(岁)',
                                 type: 'bar',
-                                data: [] // 这里先不填充数据，后面通过 JSON 加载
+                                data: [] 
                             }
                         ]
                     };
@@ -281,7 +277,6 @@
                         option.xAxis.data = data.map(function (item) {
                             return item['年份'];
                         });
-            
                         // 填充三种柱形图的数据
                         option.series[0].data = data.map(function (item) {
                             return item['男女平均年龄(岁)'];
@@ -303,9 +298,7 @@
                     $(document).ready(function() {
                         // 动态加载 JSON 文件
                         $.getJSON('data/2013-2023.json', function(data) {
-                            // 初始化 ECharts 实例
                             var myChart2 = echarts.init(document.getElementById('myChart2'));
-            
                             // 提取年份和数据
                             var years = data.map(function(item) {
                                 return item['年份'];
@@ -322,12 +315,10 @@
                             var divorceRates = data.map(function(item) {
                                 return item['粗离婚率(‰)'];
                             });
-            
-                            // 配置图表的选项
                             var option = {
                                 title: {
                                     text: '2013-2023年全国婚姻登记数据',
-                                    //left: 'center',
+                                    left: 'center',
                                 },
                                 tooltip: {
                                     trigger: 'axis',
@@ -337,17 +328,16 @@
                                 },
                                 legend: {
                                     data: ['登记结婚人数（万对）', '登记离婚人数（万对）', '结婚率(‰)', '离婚率(‰)'],
-                                    top:'bottom', // 调整图例水平位置为左侧
-                                    itemGap: 5, // 设置图例项之间的间隔
-                                    itemWidth: 10, // 设置图例项的宽度
-                                    itemHeight: 10, // 设置图例项的高度
+                                    top:'bottom',
+                                    itemGap: 5,
+                                    itemWidth: 10,
+                                    itemHeight: 10,
                                     textStyle: {
-                                        fontSize: '1vw', // 设置图例文字的大小
+                                        fontSize: '1vw', 
                                     },
                                 },
                                 grid: {
-                                    bottom: '25%', // 调整图表的下边距
-                                   
+                                    bottom: '25%',                                    
                                 },
                                 xAxis: {
                                     type: 'category',
@@ -366,7 +356,7 @@
                                     },
                                     {
                                         type: 'value',
-                                        name: '百分比(‰)',
+                                        name: '占比(‰)',
                                         min: 0,
                                         max: 10,
                                         interval: 1,
@@ -382,7 +372,6 @@
                                     {name: '离婚率(‰)', type: 'line', yAxisIndex: 1, data: divorceRates}
                                 ]
                             };
-                            // 使用配置项显示图表
                             myChart2.setOption(option);
                         });
                     });
@@ -390,18 +379,14 @@
             </div>
         </div>
         <div class="chart-bottom">
-<!-- 男性婚姻状况数据 -->
+<!-- 男性婚姻状况联动图 -->
         <div class="myChart3" id="myChart3">
-            <!-- 图表容器 -->
             <div id="barChart" style="width: 20vw;height: 16vw;float: left;"></div>
             <div id="pieChart" style="width: 15vw;height: 15vw; float: right;"></div>
-            <!-- JavaScript 代码 -->
             <script>
-                // 初始化图表
                 var barChart = echarts.init(document.getElementById('barChart'));
                 var pieChart = echarts.init(document.getElementById('pieChart'));
 
-                // 加载数据
                 $.getJSON('data/2022年男性20-49岁婚姻状况.json', function (data) {
                     // 获取年龄段和男性婚姻状况数据
                     var ageGroups = Object.keys(data);
@@ -412,8 +397,6 @@
                         var maleData = data[ageGroup]['男'];
                         maleMaritalData[ageGroup] = maleData;
                     });
-
-                    // 渲染柱状图
                     barChart.setOption({
                         title: {
                             text: '2022年20-49岁男性婚姻状况',
@@ -427,15 +410,14 @@
                         },
                         legend: {
                             data: ['未婚', '已婚', '离婚'],
-                            top:'bottom', // 调整图例水平位置为左侧
-                                itemGap: 20, // 设置图例项之间的间隔
-                                itemWidth: 10, // 设置图例项的宽度
-                                itemHeight: 10, // 设置图例项的高度
+                            top:'bottom', 
+                                itemGap: 20,
+                                itemWidth: 10,
+                                itemHeight: 10,
                                 textStyle: {
-                                    fontSize: 15, // 设置图例文字的大小
+                                    fontSize: 15,
+                                    },
                                 },
-
-                        },
                         xAxis: {
                             type: 'category',
                             data: ageGroups
@@ -466,12 +448,10 @@
                             })
                         }]
                     });
-
                     // 绑定柱状图的事件，当鼠标移动到某一年份时，更新饼图数据
                     barChart.on('mouseover', function (params) {
                         var selectedAgeGroup = params.name;
                         var selectedMaleMaritalData = maleMaritalData[selectedAgeGroup];
-
                         // 更新饼图数据
                         pieChart.setOption({
                             series: [{
@@ -483,8 +463,6 @@
                             }]
                         });
                     });
-
-                    // 初始化饼图
                     pieChart.setOption({
                         title: {
                             text: '婚姻状况占比',
@@ -502,8 +480,7 @@
                                 show: true, // 显示标签
                                 position: 'inside', // 在饼图内部显示标签
                                 formatter: '{b}：{d}%'
-                            },
-
+                                    },
                                 radius: '60%',
                                 center: ['40%', '50%'],
                                 data: []
@@ -514,14 +491,11 @@
             </script>
         </div>
 
-<!-- 女性婚姻状况数据 -->
+<!-- 男/女性婚姻状况联动图 -->
         <div class="myChart4" id="myChart4">
-            <!-- 图表容器 -->
             <div id="barChart2" style="width: 20vw; height:16vw; float: left;"></div>
             <div id="pieChart2" style="width:15vw; height: 15vw; float: left;"></div>
-            <!-- JavaScript 代码 -->
             <script>
-                // 初始化图表
                 var barChart2 = echarts.init(document.getElementById('barChart2'));
                 var pieChart2 = echarts.init(document.getElementById('pieChart2'));
 
@@ -536,8 +510,6 @@
                         var maleData = data[ageGroup]['女'];
                         maleMaritalData[ageGroup] = maleData;
                     });
-
-            // 渲染柱状图
             barChart2.setOption({
                 title: {
                     text: '2022年20-49岁女性婚姻状况',
@@ -551,14 +523,13 @@
                 },
                 legend: {
                     data: ['未婚', '已婚', '离婚'],
-                    top:'bottom', // 调整图例水平位置为左侧
-                        itemGap: 20, // 设置图例项之间的间隔
-                        itemWidth: 10, // 设置图例项的宽度
-                        itemHeight: 10, // 设置图例项的高度
+                    top:'bottom', 
+                        itemGap: 20, 
+                        itemWidth: 10,
+                        itemHeight: 10, 
                         textStyle: {
-                            fontSize: 15, // 设置图例文字的大小
+                            fontSize: 15,
                         },
-
                 },
                 xAxis: {
                     type: 'category',
@@ -595,8 +566,6 @@
             barChart2.on('mouseover', function (params) {
                 var selectedAgeGroup = params.name;
                 var selectedMaleMaritalData = maleMaritalData[selectedAgeGroup];
-
-                // 更新饼图数据
                 pieChart2.setOption({
                     series: [{
                         data: [
@@ -607,8 +576,6 @@
                     }]
                 });
             });
-
-            // 初始化饼图
             pieChart2.setOption({
                 title: {
                     text: '婚姻状况占比',
@@ -623,11 +590,10 @@
                         name: '婚姻状况',
                         type: 'pie',
                         label: {
-                        show: true, // 显示标签
-                        position: 'inside', // 在饼图内部显示标签
+                        show: true,
+                        position: 'inside', 
                         formatter: '{b}：{d}%'
-                    },
-
+                            },
                         radius: '60%',
                         center: ['40%', '50%'],
                         data: []
@@ -639,20 +605,13 @@
    </body>
         </div>
         </div>
-
-
-
-        
         <div class="chart-middle">
-            <!-- 中间的动态复杂图表 -->
+            <!-- 动态复杂图表 地图+柱形图 -->
             <div class="myChart5" id="myChart5">
                 <script type="text/javascript">
                     $(document).ready(function() {
                         $.getJSON("data/2022年结婚人数.json", function(data1) {
                             console.log(data1);
-                            data1.sort(function (a, b) {
-                                return a.value - b.value;
-                            });
                     var myChart5 = echarts.init(document.getElementById("myChart5"));
                     var mapOption = {
                         title: {
@@ -669,7 +628,6 @@
                             min: 0,
                             max: 55,
                             inRange: {
-                                // prettier-ignore
                                 color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
                               },
                             text: ['High', 'Low'],
@@ -686,9 +644,9 @@
                             animation:true,
                             roam:true,
                             label:{
-                                color:"#666",
+                                color:"#000",
                                 show:true,
-                                fontSize:10,
+                                fontSize:13,
                                 position:'inside',
                                 verticalAlign:"middle",
                             },
@@ -698,54 +656,15 @@
                             itemStyle:{
                                 borderColor:"rgba(39,211,233,1)",
                                 borderWidth:1,
+                                shadowBlur:5,
+                                shadowColor:'#01273F',
+                                shadowOffsetX:3,
+                                shadowOffsetY:3,
+                                opacity:1,
                             },
                         },],
                     };
-                    var barOption = {
-                            title: {
-                                text: '2022年我国登记结婚人口分布情况/万对',
-                                left: 'center',
-                            },
-                            xAxis: {
-                                type: 'value',                            
-                            },
-                            yAxis: {
-                                type:'category',
-                                data: data1.map(function(item) {
-                                return item.name;
-                            }),
-                            },
-                            visualMap: {
-                                left: 'left',
-                                top:'top',
-                                min: 0,
-                                max: 30,
-                                inRange: {
-                                color:['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
-                                  },
-                                text: ['High', 'Low'],
-                                calculable: true
-                                },
-                                
-                                tooltip: {
-                                    trigger: 'item',
-                                    formatter: '{b}: {c}万对'
-                                },
-                                series: [{
-                                    data: data1.map(function(item) {
-                                        return item.value;
-                                    }),
-                                    type: 'bar',
-                                    animation:true,
-                                }]
-                            };
-                            let currentOption = mapOption;
-                    myChart5.setOption(mapOption);
-                    setInterval(function () {
-                        currentOption = currentOption === mapOption ? barOption : mapOption;
-                        myChart5.setOption(currentOption, true);
-                    }, 3000);
-            
+                    myChart5.setOption(mapOption);                    
                     }).fail(function() {
                             console.log("An error has occurred.");
                         });
@@ -754,34 +673,40 @@
             </div>
         </div>
         <div class="chart-right">
+<!-- 2018-2022年结婚年龄段分布雷达图 -->
             <div class="myChart6" id="myChart6">
                 <script>
-                    var myChart6 = echarts.init(document.getElementById('myChart6'));
-            
+                    var myChart6 = echarts.init(document.getElementById('myChart6'));            
                     var radarOption = {
                         title: {
                             text: '2018-2022年结婚年龄段分布',
                             left:'center',
                             textStyle: {
-                                        fontSize: 15, // 设置图例文字的大小
+                                        fontSize: 15,
                                     },
-                        },
+                            },
                         tooltip: {},
                         legend: {
                             data: ['2018', '2019', '2020', '2021', '2022'],
                             top:'bottom',
-            
+                            itemGap: 5,
+                            itemWidth: 10,
+                            itemHeight: 10,
+                            textStyle: {
+                                fontSize: '1vw',
+                                },            
                         },
-            
                         radar: {
                             indicator: [
                                 { name: '20-24岁占比(%)' },
                                 { name: '25-29岁占比(%)' },
                                 { name: '30-34岁占比(%)' },
-                                { name: '35-39岁占比(%)' },
+                                { name: '35-39岁占比(%)' }, 
                                 { name: '40岁以上占比(%)' }
-                            ]
-                        },
+                            ],
+                        radius: 75,
+                        center: ['50%', '55%'],
+                            },
                         series: [{
                             type: 'radar',
                             data: [
@@ -811,16 +736,13 @@
                     myChart6.setOption(radarOption);
                 </script>
             </div>
+<!-- 2018-2022年结婚年龄段数据-堆叠柱形图 -->
             <div class="myChart7" id="myChart7">
                 <script>
-                    // 使用 jQuery 的 $.getJSON() 方法加载 JSON 数据
                     $.getJSON('data/2018-2022结婚年龄段人数.json', function(data) {
-                        // 定义年份和各年龄段的人数数据
                         var years = [];
                         var ageGroups = ['20-24岁', '25-29岁', '30-34岁', '35-39岁', '40岁以上'];
                         var seriesData = [];
-            
-                        // 遍历每个数据对象，提取年份和各年龄段的人数
                         $.each(data, function(index, item) {
                             years.push(item['年份']);
                             $.each(ageGroups, function(i, ageGroup) {
@@ -843,7 +765,6 @@
                             });
                         });
                         var myChart7 = echarts.init(document.getElementById('myChart7'));
-                        // ECharts 配置项
                         var option = {
                             title: {
                             text: '2018-2022年结婚年龄段数据',
@@ -864,15 +785,14 @@
                             },
                             legend: {
                                 left: 'center',
-                            top:'bottom', // 调整图例水平位置为左侧
-                                    itemGap: 5, // 设置图例项之间的间隔
-                                    itemWidth: 10, // 设置图例项的宽度
-                                    itemHeight: 10, // 设置图例项的高度
-                                    textStyle: {
-                                        fontSize: '1vw', // 设置图例文字的大小
+                                top:'bottom',
+                                itemGap: 5,
+                                itemWidth: 10,
+                                itemHeight: 10,
+                                textStyle: {
+                                    fontSize: '1vw', 
                                     },
-                        },
-                       
+                            },
                             grid: {
                                 bottom: '10%',
                                 containLabel: true
@@ -885,17 +805,14 @@
                                 type: 'value'
                             },
                             series: seriesData
-                        };
-            
-                        // 使用加载的数据和配置项初始化 ECharts 实例
-                        
+                        };                        
                         myChart7.setOption(option);
                     });
                 </script>
             </div>
+<!-- 大学生恋爱看重的方面-词云图 -->
             <div class="myChart8" id="myChart8">
                 <script type="text/javascript">  
-                    // 使用模块化加载方式
                        require.config({
                            paths:{echarts:'http://echarts.baidu.com/build/dist'}
                        })
@@ -906,28 +823,33 @@
                            ],
                            function (ec) {
                                var myChart8 = ec.init(document.getElementById('myChart8'));
-                               option = {
+                              var option = {
                                    title: {
-                                       text: '现代人群恐婚原因',
-                                       link: '',
+                                       text: '大学生恋爱看重的方面',
                                    },
-                                   backgroundColor: '#e8dbd7',
+                                   backgroundColor: 'white',
                                    tooltip: { show: true },
                                    series: [{
                                        shape: 'circle',
                                        name: '原因：',
                                        type: 'wordCloud',
-                                       sizeRange: [100, 50000], // 最大最小值
-                                       size: ['100%', '90%'], // 词云图大小
+                                       sizeRange: [0, 5000], // 最大最小值
+                                       size: ['90%', '90%'], // 词云图大小
                                        textRotation: [0, 25, 40], // 词的倾斜角度
                                        textPadding: 0,
                                        autoSize: { enable: true, minSize: 2 },
                                        data: [// 词云名称，词云大小，颜色
-                                           { name: '担心感情变质', value: 490, itemStyle: { normal: { color: '#ff7f0e' } } },
-                                           { name: '担心另一半出轨/不忠/家暴', value: 420, itemStyle: { normal: { color: '#2ca02c' } } },
-                                           { name: '恐惧自己无法处理好亲密关系', value: 400, itemStyle: { normal: { color: '#1f77b4' } } },
-                                           { name: '恐惧婚后家庭琐事', value: 560, itemStyle: { normal: { color: '#d62728' } } },
-                                           { name: '担心婚后生育抚养问题', value: 420, itemStyle: { normal: { color: '#9467bd' } } },
+                                       { name: '道德人品', value: 77.1, itemStyle: { normal: { color: '#ff7f0e' } } },
+                                           { name: '外貌性格', value: 58.48, itemStyle: { normal: { color: '#2ca02c' } } },
+                                           { name: '凭感觉', value: 55.74, itemStyle: { normal: { color: '#1f77b4' } } },
+                                           { name: '兴趣爱好', value: 49.8, itemStyle: { normal: { color: '#d62728' } } },
+                                           { name: '理想信念', value: 40.65, itemStyle: { normal: { color: '#9467bd' } } },
+                                           { name: '工作能力', value: 31.44, itemStyle: { normal: { color: '#CEB286' } } },
+                                           { name: '学识学历', value: 17.89, itemStyle: { normal: { color: '#80A320' } } },
+                                           { name: '经济条件', value: 16.02, itemStyle: { normal: { color: '#5AB393' } } },
+                                           { name: '地域差异', value: 8.74, itemStyle: { normal: { color: '#7297B1' } } },
+                                           { name: '家庭背景', value: 8.48, itemStyle: { normal: { color: '#A85CEA' } } },
+                                           { name: '生活习惯', value: 1.74, itemStyle: { normal: { color: '#B94BA3' } } },
                                        ]
                                    }]
                                };

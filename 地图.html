@@ -5,6 +5,7 @@
 		<title></title>
 		<script src="js/echarts.min.js"></script>
 		<script src="js/china.js"></script>
+		<script src="js/echarts-gl.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	</head>
 	<body>
@@ -13,9 +14,6 @@
 			$(document).ready(function() {
 				$.getJSON("data/2022年结婚人数.json", function(data1) {
 					console.log(data1);
-					data1.sort(function (a, b) {
-						return a.value - b.value;
-					});
 			var myChart5 = echarts.init(document.getElementById("myChart5"));
 			var mapOption = {
 				title: {
@@ -62,53 +60,17 @@
 					itemStyle:{
 						borderColor:"rgba(39,211,233,1)",
 						borderWidth:1,
+						shadowBlur:5,
+						shadowColor:'#01273F',
+						shadowOffsetX:3,
+						shadowOffsetY:3,
+						opacity:1,
 					},
 				},],
 			};
-			var barOption = {
-					title: {
-						text: '我国登记结婚人口分布情况/万对',
-						left: 'center',
-					},
-                    xAxis: {
-                    	type: 'value',                            
-                    },
-                    yAxis: {
-                        type:'category',
-						data: data1.map(function(item) {
-						return item.name;
-					}),
-                    },
-					visualMap: {
-						left: 'left',
-						top:'top',
-						min: 0,
-						max: 30,
-						inRange: {
-						color:['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
-      					},
-						text: ['High', 'Low'],
-						calculable: true
-						},
-						
-						tooltip: {
-							trigger: 'item',
-							formatter: '{b}: {c}万对'
-						},
-                        series: [{
-                            data: data1.map(function(item) {
-								return item.value;
-							}),
-                            type: 'bar',
-							animation:true,
-                        }]
-                    };
-					let currentOption = mapOption;
+			
 			myChart5.setOption(mapOption);
-			setInterval(function () {
-				currentOption = currentOption === mapOption ? barOption : mapOption;
-				myChart5.setOption(currentOption, true);
-			}, 3000);
+			
 	
 			}).fail(function() {
 					console.log("An error has occurred.");
