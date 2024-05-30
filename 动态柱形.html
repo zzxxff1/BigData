@@ -7,11 +7,11 @@
     <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 </head>
 <body>
-    <div id="echarts" style="width: 800px; height: 600px;"></div>
+    <div id="myChart1" style="width: 800px; height: 600px;"></div>
 
     <script>
     // 创建 ECharts 实例
-    var myChart = echarts.init(document.getElementById('echarts'));
+    var myChart1 = echarts.init(document.getElementById('myChart1'));
           var year =[2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
           var data = [
           [4095,2075,8517,5591,3301,7714,4090,4317,3870,10599,9091,8395,5002,
@@ -76,22 +76,22 @@
     };
 
     // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+    myChart1.setOption(option);
 
     // 循环遍历数据，并逐步更新图表
     for (let i = 0; i < data.length; i++) {
     setTimeout(function() {
         var option1 = {
             title: {
-                text: year[i].toString() + '年未婚人数',
+                text: year[i].toString() + '年全国各省未婚人数',
                 left:'center'
             },
             series: [{
                 data: data[i]
             }]
         }
-        myChart.setOption(option1);
-    }, 1000 * i);
+        myChart1.setOption(option1);
+    }, 3000 * i);
 }
     </script>
 </body>
