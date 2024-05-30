@@ -45,16 +45,22 @@
                     }
                 },
                 legend: {
-                    data: ['未婚', '已婚', '离婚'],
-                    top:'bottom', // 调整图例水平位置为左侧
-                        itemGap: 20, // 设置图例项之间的间隔
-                        itemWidth: 10, // 设置图例项的宽度
-                        itemHeight: 10, // 设置图例项的高度
-                        textStyle: {
-                            fontSize: 15, // 设置图例文字的大小
-                        },
-
+                    top:'bottom',
+                    textStyle:{
+                        fontSize:20
+                    }
+                    // selectedMode: false
                 },
+                // legend: {
+                //     data: ['未婚', '已婚', '离婚'],
+                //     top:'bottom', // 调整图例水平位置为左侧
+                //         itemGap: 20, // 设置图例项之间的间隔
+                //         itemWidth: 10, // 设置图例项的宽度
+                //         itemHeight: 10, // 设置图例项的高度
+                //         textStyle: {
+                //             fontSize: 15, // 设置图例文字的大小
+                //         },
+                // },
                 xAxis: {
                     type: 'category',
                     data: ageGroups
